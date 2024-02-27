@@ -10,6 +10,9 @@ class adminControlle extends Controller
     public function index(){
         return view("dass.dass");
     }
+    public function dass(){
+        return view("dass.dass");
+    }
     
     public function login(){
         return view("login.login");

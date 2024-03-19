@@ -15,9 +15,9 @@ class admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session('username')){
-            return redirect('admin/login');
-        }
-        return $next($request);
+        // if(!session('username')){
+        //     return redirect('admin/login');
+        // }
+         return $next($request);
     }
 }

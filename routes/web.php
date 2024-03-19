@@ -14,9 +14,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::prefix('admin')->group(function(){
-Route::get('/',[adminControlle::class,'index'])->middleware(admin::class);
-Route::get('dass',[adminControlle::class,'dass']);
 Route::get('login',[adminControlle::class,'login']);
 Route::post('login',[adminControlle::class,'ceklogin']);
-});
+
+
+Route::get('layoutadmin',[adminControlle::class,'dassadmin']);
+
+
+Route::get('regis',[adminControlle::class,'regis']);
+Route::post('regis',[adminControlle::class,'simpanregis']);
+
+
+Route::get('admin',[adminControlle::class,'admin']);
+Route::get('tambahadmin',[adminControlle::class,'tambahadmin']);
+Route::post('tambahadmin',[adminControlle::class,'tambahad']);
+Route::get('editadmin/{id}',[adminControlle::class,'editadmin']);
+Route::post('editadmin/{id}',[adminControlle::class,'editad']);
+Route::get('hapusadmin/{id}',[adminControlle::class,'hapusadmin']);
+ });

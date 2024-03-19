@@ -72,7 +72,7 @@
               @enderror
                 </div>
                 <div class="text-center">
-                  <p>Not a member? <a href="#!">Register</a></p>
+                  <p>Not a member? <a href="regis">Register</a></p>
               </div>
                 <button class="pull-right btn btn-block btn-danger">login</button>
               </form>

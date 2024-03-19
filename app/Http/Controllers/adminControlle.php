@@ -7,11 +7,30 @@ use Illuminate\Http\Request;
 
 class adminControlle extends Controller
 {
-    public function index(){
-        return view("dass.dass");
+     public function dassadmin(){
+        return view("dass.dassadmin");
+     }
+    public function regis(){
+        return view("login.regisadmin");
     }
-    public function dass(){
-        return view("dass.dass");
+    public function simpanregis(Request $request){
+       
+        $cek = $request->validate([
+            'email' => 'required',
+            'username' => 'required|min:3',
+            'password' => 'required|min:4',
+            'nama_lengkap' => 'required',
+            'status' => 'required'
+        ]);
+        $c = new admin();
+        $c->create([
+            'email'=>$request->email,
+            'username'=>$request->username,
+            'password'=>$request->password,
+            'nama_lengkap'=>$request->nama_lengkap,
+            'status'=>$request->status
+        ]);
+        return back()->with('Pesan', 'anda berasil registrasi');
     }
     
     public function login(){
@@ -23,6 +42,48 @@ class adminControlle extends Controller
             return redirect('admin/dass');
         }
         return back()->with('pesan','Username dan Password tidak terdaftar');
+        }
+
+        public function admin(){
+            return view("admin.admin");
+        }
+
+        public function tambahadmin(){
+            return view("admin.tambahadmin");
+        }
+        public function tambahad(Request $request){
+            $k =new admin;
+            $k->create([
+                'email'=>$request->input('email'),
+                'username'=>$request->input('username'),
+                'password'=>$request->input('password'),
+                'nama_lengkap'=>$request->input('nama_lengkap'),
+                'status'=>$request->input('status')
+                
+                
+            ]);
+            return redirect('admin/tambahadmin');
+            
+        }
+        public function editadmin($id){
+            $e = admin::select('*')->where('id',$id)->get();
+                return view('admin.editadmin',['data'=>$e]);
+            
+        }
+        public function editad(Request $request ,$id){
+            $e = admin::where('id',$id)->update([
+                'email'=>$request->email,
+                'username'=>$request->username,
+                'password'=>$request->password,
+                'nama_lengkap'=>$request->nama_lengkap,
+                'status'=>$request->status
+
+            ]);
+            return redirect('admin/editadmin');
+        }
+        public function hapuskelas($id){
+            $e = kelas::where('id_kelas',$id)->delete();
+            return back();
         }
     }   
 

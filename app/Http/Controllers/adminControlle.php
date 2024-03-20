@@ -45,7 +45,8 @@ class adminControlle extends Controller
         }
 
         public function admin(){
-            return view("admin.admin");
+            $cek = new admin;
+        return view("admin.index",['data'=>$cek->all()]);
         }
 
         public function tambahadmin(){
@@ -62,14 +63,14 @@ class adminControlle extends Controller
                 
                 
             ]);
-            return redirect('admin/tambahadmin');
+            return redirect('admin/admin');
             
         }
         public function editadmin($id){
             $e = admin::select('*')->where('id',$id)->get();
                 return view('admin.editadmin',['data'=>$e]);
             
-        }
+        }  
         public function editad(Request $request ,$id){
             $e = admin::where('id',$id)->update([
                 'email'=>$request->email,
@@ -79,10 +80,10 @@ class adminControlle extends Controller
                 'status'=>$request->status
 
             ]);
-            return redirect('admin/editadmin');
+            return redirect('admin/admin');
         }
-        public function hapuskelas($id){
-            $e = kelas::where('id_kelas',$id)->delete();
+        public function hapusadmin($id){
+            $e = admin::where('id',$id)->delete();
             return back();
         }
     }   

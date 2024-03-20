@@ -18,7 +18,29 @@
     <link rel="stylesheet" href="\css\bootstrap\_media.css">
 		<link rel="stylesheet" href="\css\style.min.css">
 		
-	
+	<style>
+    .dropdown-btn {
+  
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+    }
+  .dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+  </style>
     
   </head>
   <body>
@@ -40,8 +62,13 @@
               <a href="#"><span class="fa fa-user mr-3"></span> Dashboard</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Friends</a>
-          </li>
+            <a href="#" class="dropdown-btn"><span class="fa fa-table mr-3"></span>Data</a>
+            <div class="dropdown-container">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+        </li>
           <li>
             <a href="#"><span class="fa fa-sticky-note mr-3"></span> Subcription</a>
           </li>
@@ -57,9 +84,24 @@
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-        @yield('content')
+      @yield('content')
 		</div>
-
+    <script>
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      var i;
+      
+      for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+          } else {
+            dropdownContent.style.display = "block";
+          }
+        });
+      }
+      </script>
     <script src="\js\jquery.min.js"></script>
     <script src="\perpus\public\js\popper.js"></script>
     <script src="\js\bootstrap.min.js"></script>

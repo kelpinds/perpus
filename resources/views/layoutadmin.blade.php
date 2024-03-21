@@ -53,30 +53,21 @@
 	          <span class="sr-only">Toggle Menu</span>
 	        </button>
         </div>
-	  		<h1><a href="index.html" class="logo">Perpustakaan Digital</a></h1>
+	  		<h1><a class="logo">Perpustakaan Digital</a></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> Dashboard</a>
+            <a href="dass"><span class="fa fa-home mr-3"></span> Dashboard</a>
           </li>
           <li>
-              <a href="#"><span class="fa fa-user mr-3"></span> Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="dropdown-btn"><span class="fa fa-table mr-3"></span>Data</a>
+            <a  class="dropdown-btn"><span class="fa fa-table mr-3"></span>Data</a>
             <div class="dropdown-container">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              <a href="admin">Petugas</a>
+              <a href="buku">Buku</a>
+              <a href="kategori">Kategori</a>
             </div>
         </li>
           <li>
-            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Subcription</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Settings</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Information</a>
+            <a href="login"><span class="fa fa-sign mr-3"></span> Log Out</a>
           </li>
         </ul>
 

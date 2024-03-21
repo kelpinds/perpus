@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategoti',function(Blueprint $tabel){
+        Schema::create('kategori',function(Blueprint $tabel){
             $tabel->integer('kategoriid')->autoIncrement();
             $tabel->string('nama_kategori', 100);
             $tabel->timestamps();

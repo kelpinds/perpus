@@ -7,7 +7,9 @@
         <div class="container">
             <div class="card shadow m-auto" style="width: 400px">
                 <div class="card-body">
-                    <h4 class="h4">Daftarkan Diri Anda</h4>
+                    <div class="card-header">
+                        <span class="card-title h4 text-black-50">Tambah Data Buku</span>
+                    </div>
                     @if ($errors->any())   
                         <div class="alert alert-success" role="alert">
 

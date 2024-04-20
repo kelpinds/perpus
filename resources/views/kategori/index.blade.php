@@ -1,39 +1,89 @@
+@extends('layout.app')
 
-@extends('layoutadmin')
+@section('title', ' - Kategori')
 
 @section('content')
+<section class="section">
+    <div class="section-header">
+        <h1>Kategori</h1>
+    </div>
 
-    <div class="container mt-5 ">
-        <div class="card">
-            <div class="card-header">
-                <span class="card-title h4 text-black-50">Data Buku</span>
-            </div>
-            <div class="container mt-4 d-flex justify-content-end">
-                
-                <a type="button" class="btn btn-primary" href="{{url('admin/tambahkategori')}}">Tambah</a>
-            </div>
-            <div class="card mt-2">
-                <table id="table-movie" class="table table-sm table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Kategori</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $item)
-                            <tr>
-                                <td>{{$item->kategoriid}}</td>
-                                <td>{{$item->nama_kategori}}</td>
-                                <td>
-                                    <a href="{{url('admin/editkategori/'.$item->kategoriid)}}" class="btn btn-primary"><i class="fa fa-edit "></i> Edit</a>
-                                    <a href="hapuskategori/{{$item->kategoriid}}" class="btn btn-danger"><i class="fa fa-pencil"></i> Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-white">
+                        <h4 class="text-success">Data Kategori</h4>
+                        <div class="card-header-form float-right">
+                            <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#form-tambah"><i class="fa fa-plus"></i> Tambah</button>
+                        </div>
+                    </div>
+                    <div class="card-body p-2">
+                        <table class="table table-hover" id="table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th style="width: 70%">Nama</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($kategori as $item)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    <td>
+                                        <form action="/{{auth()->user()->level}}/kategori/{{$item->id}}" id="delete-form">
+                                            <a href="/{{auth()->user()->level}}/kategori/{{$item->id}}/edit" class="btn btn-sm btn-outline-warning"><i
+                                                    class="fa fa-edit"></i> Edit</a>
+                                            @csrf
+                                            @method('delete')
+                                            <button type="button" class="btn btn-sm btn-outline-danger" id="{{$item->nama}}"
+                                                data-id="{{$item->id}}" onclick="confirmDelete(this)"><i
+                                                    class="fa fa-trash"></i> Delete</a>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-@endsection 
+</section>
+@include('kategori.form');
+@endsection
+
+@push('script')
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+
+    function confirmDelete(button) {
+
+        event.preventDefault()
+        const id = button.getAttribute('data-id');
+        const kode = button.getAttribute('id');
+        swal({
+                title: 'Apa Anda Yakin ?',
+                text: 'Anda akan menghapus data: "' + kode +
+                    '". Ketika Anda tekan OK, maka data tidak dapat dikembalikan !',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    const form = document.getElementById('delete-form');
+                    // Setelah pengguna mengkonfirmasi penghapusan, Anda bisa mengirim form ke server
+                    form.action = '/{{auth()->user()->level}}/kategori/' + id; // Ubah aksi form sesuai dengan ID yang sesuai
+                    form.submit();
+                }
+            });
+    }
+
+</script>
+@endpush

@@ -4,13 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Barang;
 
-class kategori extends Model
+class Kategori extends Model
 {
     use HasFactory;
-    protected $table = "kategori";
-    protected $primaryKey = "kategoriid";
-    public $incrementing=false;
-   
-    protected $guarded=[];
+
+    protected $fillable = [
+        'nama',
+    ];
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
 }

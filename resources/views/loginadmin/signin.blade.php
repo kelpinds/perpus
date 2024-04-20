@@ -32,7 +32,7 @@
 
                         <div class="card card-info shadow">
                             <div class="card-header">
-                                <h4 class="text-info">Daftar Baru</h4>
+                                <h4 class="text-success">Daftar Baru</h4>
                             </div>
                             @error('status')
                             <div class="alert alert-danger" role="alert">
@@ -93,7 +93,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-5 mx-auto">
-                                        <button type="submit" class="btn btn-info btn-lg btn-block" tabindex="4">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block" tabindex="4">
                                             Daftar
                                         </button>
                                     </div>

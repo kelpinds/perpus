@@ -34,7 +34,7 @@
 
                         <div class="card card-info shadow">
                             <div class="card-header">
-                                <h4 class="text-info">Toko Kelontong</h4>
+                                <h4 class="text-success">Kasir Ku</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="/postlogin" class="needs-validation">
